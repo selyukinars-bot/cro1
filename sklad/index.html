@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Складской учет</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+<section class="stats">
+        <div class="stat-card">
+            <span>Всего позиций</span>
+            <strong id="totalProducts">0</strong>
+        </div>
+        <div class="stat-card">
+            <span>Единиц на складе</span>
+            <strong id="totalQuantity">0</strong>
+        </div>
+        <div class="stat-card">
+            <span>Низкий остаток</span>
+            <strong id="lowStock">0</strong>
+        </div>
+    </section>
+
+    <section class="panel">
+        <h2>Добавить товар</h2>
+        <form id="productForm">
+            <div class="form-grid">
+                <div>
+                    <label for="productName">Название товара</label>
+                    <input id="productName" type="text"
+                           placeholder="Например, Клавиатура" required maxlength="60">
+                </div>
+                <div>
+                    <label for="category">Категория</label>
+                    <select id="category" required>
+                        <option value="Электроника">Электроника</option>
+                        <option value="Канцелярия">Канцелярия</option>
+                        <option value="Оборудование">Оборудование</option>
+                        <option value="Другое">Другое</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="quantity">Количество</label>
+                    <input id="quantity" type="number" min="1"
+                           max="1000000" step="1" placeholder="10" required>
+                </div>
+                <div>
+                    <label for="minQuantity">Минимальный остаток</label>
+                    <input id="minQuantity" type="number" min="0"
+                           max="1000000" step="1" value="5" required>
+                </div>
+            </div>
+            <button type="submit">＋ Добавить товар</button>
+        </form>
+        <p id="message" role="status" aria-live="polite"></p>
+    </section>
+
+    <section class="panel">
+        <div class="section-heading">
+            <h2>Складские запасы</h2>
+            <input id="searchInput" type="search"
+                   placeholder="Поиск по названию или категории...">
+        </div>
+
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Товар</th>
+                        <th>Категория</th>
+                        <th>Количество</th>
+                        <th>Мин. остаток</th>
+                        <th>Статус</th>
+                        <th>Операции</th>
+                    </tr>
+                </thead>
+                <tbody id="productTable"></tbody>
+            </table>
+        </div>
+        <p id="emptyMessage" class="empty-message">Товары не найдены.</p>
+    </section>
+
+    <section class="panel">
+        <div class="section-heading">
+            <h2>История операций</h2>
+            <button id="clearHistory" class="secondary" type="button">
+                Очистить историю
+            </button>
+        </div>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Время</th>
+                        <th>Операция</th>
+                        <th>Товар</th>
+                        <th>Количество</th>
+                    </tr>
+                </thead>
+                <tbody id="historyTable"></tbody>
+            </table>
+        </div>
+        <p id="historyEmpty" class="empty-message">Операций пока нет.</p>
+    </section>
+
+    <footer>
+        Учебный проект по логистике · Данные сохраняются в этом браузере.
+    </footer>
+</main>
+<script src="script.js" defer></script>
+</body>
+</html>
